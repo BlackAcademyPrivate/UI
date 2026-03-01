@@ -2625,6 +2625,7 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 oldTab.TitleFrame.Visible = false
                 oldTab.ContainerWrapper.Visible = false
                 
+                oldTab.Text.TextTransparency = 0
                 oldTab.Text.TextColor3 = Color3.fromRGB(130, 130, 140)
 
                 
@@ -2665,9 +2666,14 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             ContainerWrapper.Position = UDim2.new(0, 12, 0, 55)
             ContainerWrapper.Visible = true
             
+            TabText.TextTransparency = 1
             TabText.TextColor3 = Color3.fromRGB(210, 210, 210)
+            local textFadeIn = TweenService:Create(TabText, tweenInfoExpand, {
+                TextTransparency = 0
+            })
+            _trackTween(textFadeIn)
+            textFadeIn:Play()
 
-            
             TabBtn.BackgroundColor3 = Color3.fromRGB(67, 70, 70)
             TabBtn.BackgroundTransparency = 0.92
             TabBtn.BorderSizePixel = 0
@@ -2685,6 +2691,7 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             end
             
             if TabIcon then
+                TabIcon.ImageTransparency = 1
                 local tween = TweenService:Create(TabIcon, tweenInfoExpand, {
                     ImageColor3 = Color3.fromRGB(210, 210, 210),
                     ImageTransparency = 0
