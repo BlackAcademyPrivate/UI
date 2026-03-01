@@ -2666,8 +2666,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             _trackTween(textFadeIn)
             textFadeIn:Play()
 
-            TabBtn.BackgroundColor3 = Color3.fromRGB(67, 70, 70)
-            TabBtn.BackgroundTransparency = 0.98
+            TabBtn.BackgroundColor3 = Karnage.FrameColor
+            TabBtn.BackgroundTransparency = Karnage.FrameTransparency
             TabBtn.BorderSizePixel = 0
 
             local existingGradient = TabBtn:FindFirstChildOfClass("UIGradient")
@@ -5354,8 +5354,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     
                     tab.Text.TextColor3 = Color3.fromRGB(210, 210, 210)
                     
-                    tab.Button.BackgroundColor3 = Color3.fromRGB(67, 70, 70)
-                    tab.Button.BackgroundTransparency = 0.98
+                    tab.Button.BackgroundColor3 = Karnage.FrameColor
+                    tab.Button.BackgroundTransparency = Karnage.FrameTransparency
                     tab.Button.BorderSizePixel = 0
 
                     local existingGradient = tab.Button:FindFirstChildOfClass("UIGradient")
@@ -5654,7 +5654,7 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
         SettingsTab.Slider({
             Name = "UI Transparency",
             Min = 0,
-            Max = 0.80,
+            Max = 0.20,
             Default = 0,
             Rounding = 2,
             Callback = function(value)
