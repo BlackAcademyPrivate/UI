@@ -5645,12 +5645,28 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             end
         })
         
+        SettingsTab.Section({
+            Name = "Appearance",
+            TextColor = Color3.fromRGB(220, 220, 220),
+            Size = 16
+        })
         
+        SettingsTab.Slider({
+            Name = "UI Transparency",
+            Min = 0,
+            Max = 0.80,
+            Default = 0,
+            Rounding = 2,
+            Callback = function(value)
+                Main.BackgroundTransparency = value
+            end
+        })
         
         Karnage.SetIgnoreIndexes({
             "Config Name",
             "Config List",
-            "Anonymous Mode"
+            "Anonymous Mode",
+            "UI Transparency"
 
         })
     end
