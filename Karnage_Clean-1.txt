@@ -1527,7 +1527,7 @@ function Karnage:Notify(config)
         Font = Enum.Font[Karnage.CustomFont],
         Text = contentText,
         TextColor3 = Color3.fromRGB(160, 160, 170),
-        TextSize = 14,
+        TextSize = 12,
         TextWrapped = true,
         TextTruncate = Enum.TextTruncate.AtEnd,
         TextXAlignment = Enum.TextXAlignment.Left,
@@ -1912,7 +1912,7 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
         Parent = KarnageUI,
         BackgroundColor3 = Karnage.MainFrameColor,
         BorderColor3 = Color3.fromRGB(39, 39, 42),
-        BackgroundTransparency = 0.05,
+        BackgroundTransparency = 0.08,
         BorderSizePixel = 0,
         Size = UDim2.new(0, 0, 0, 0),
         Position = UDim2.new(0.5, 0, 0.5, 0),
@@ -2626,6 +2626,9 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 oldTab.Button.BackgroundTransparency = 1
                 oldTab.Button.BorderSizePixel = 0
                 oldTab.Button.BorderColor3 = Color3.fromRGB(39, 39, 42)
+
+                local oldBtnGradient = oldTab.Button:FindFirstChildOfClass("UIGradient")
+                if oldBtnGradient then oldBtnGradient:Destroy() end
                 
                 local oldStroke = oldTab.Button:FindFirstChild("UIStroke")
                 if oldStroke then
@@ -2688,10 +2691,27 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             _trackTween(textFadeIn)
             textFadeIn:Play()
 
-            TabBtn.BackgroundColor3 = Color3.fromRGB(67, 70, 70)
-            TabBtn.BackgroundTransparency = 0.92
+            TabBtn.BackgroundColor3 = Color3.fromRGB(20, 40, 80)
+            TabBtn.BackgroundTransparency = 0.55
             TabBtn.BorderSizePixel = 0
-            
+
+            local existingGradient = TabBtn:FindFirstChildOfClass("UIGradient")
+            if existingGradient then existingGradient:Destroy() end
+            Karnage.Instance("UIGradient", {
+                Parent = TabBtn,
+                Color = ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 60, 130)),
+                    ColorSequenceKeypoint.new(0.55, Color3.fromRGB(20, 35, 70)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 45, 45))
+                }),
+                Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 0.3),
+                    NumberSequenceKeypoint.new(0.6, 0.6),
+                    NumberSequenceKeypoint.new(1, 1)
+                }),
+                Rotation = 0
+            })
+
             local tabStroke = TabBtn:FindFirstChild("UIStroke")
             if tabStroke then
                 tabStroke.Color = Color3.fromRGB(35, 35, 45)
@@ -5373,10 +5393,27 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     
                     tab.Text.TextColor3 = Color3.fromRGB(210, 210, 210)
                     
-                    tab.Button.BackgroundColor3 = Color3.fromRGB(67, 70, 70)
-                    tab.Button.BackgroundTransparency = 0.92
+                    tab.Button.BackgroundColor3 = Color3.fromRGB(20, 40, 80)
+                    tab.Button.BackgroundTransparency = 0.55
                     tab.Button.BorderSizePixel = 0
-                    
+
+                    local existingGradient = tab.Button:FindFirstChildOfClass("UIGradient")
+                    if existingGradient then existingGradient:Destroy() end
+                    Karnage.Instance("UIGradient", {
+                        Parent = tab.Button,
+                        Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 60, 130)),
+                            ColorSequenceKeypoint.new(0.55, Color3.fromRGB(20, 35, 70)),
+                            ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 45, 45))
+                        }),
+                        Transparency = NumberSequence.new({
+                            NumberSequenceKeypoint.new(0, 0.3),
+                            NumberSequenceKeypoint.new(0.6, 0.6),
+                            NumberSequenceKeypoint.new(1, 1)
+                        }),
+                        Rotation = 0
+                    })
+
                     local tabStroke = tab.Button:FindFirstChild("UIStroke")
                     if tabStroke then
                         tabStroke.Color = Color3.fromRGB(35, 35, 45)
