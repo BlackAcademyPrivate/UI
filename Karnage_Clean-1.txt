@@ -2691,8 +2691,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             _trackTween(textFadeIn)
             textFadeIn:Play()
 
-            TabBtn.BackgroundColor3 = Color3.fromRGB(20, 40, 80)
-            TabBtn.BackgroundTransparency = 0.55
+            TabBtn.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            TabBtn.BackgroundTransparency = 0
             TabBtn.BorderSizePixel = 0
 
             local existingGradient = TabBtn:FindFirstChildOfClass("UIGradient")
@@ -2700,15 +2700,11 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             Karnage.Instance("UIGradient", {
                 Parent = TabBtn,
                 Color = ColorSequence.new({
-                    ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 60, 130)),
-                    ColorSequenceKeypoint.new(0.55, Color3.fromRGB(20, 35, 70)),
-                    ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 45, 45))
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 55, 110)),
+                    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(22, 32, 55)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 15))
                 }),
-                Transparency = NumberSequence.new({
-                    NumberSequenceKeypoint.new(0, 0.3),
-                    NumberSequenceKeypoint.new(0.6, 0.6),
-                    NumberSequenceKeypoint.new(1, 1)
-                }),
+                Transparency = NumberSequence.new(0),
                 Rotation = 0
             })
 
@@ -5393,8 +5389,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     
                     tab.Text.TextColor3 = Color3.fromRGB(210, 210, 210)
                     
-                    tab.Button.BackgroundColor3 = Color3.fromRGB(20, 40, 80)
-                    tab.Button.BackgroundTransparency = 0.55
+                    tab.Button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                    tab.Button.BackgroundTransparency = 0
                     tab.Button.BorderSizePixel = 0
 
                     local existingGradient = tab.Button:FindFirstChildOfClass("UIGradient")
@@ -5402,15 +5398,11 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     Karnage.Instance("UIGradient", {
                         Parent = tab.Button,
                         Color = ColorSequence.new({
-                            ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 60, 130)),
-                            ColorSequenceKeypoint.new(0.55, Color3.fromRGB(20, 35, 70)),
-                            ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 45, 45))
+                            ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 55, 110)),
+                            ColorSequenceKeypoint.new(0.5, Color3.fromRGB(22, 32, 55)),
+                            ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 15))
                         }),
-                        Transparency = NumberSequence.new({
-                            NumberSequenceKeypoint.new(0, 0.3),
-                            NumberSequenceKeypoint.new(0.6, 0.6),
-                            NumberSequenceKeypoint.new(1, 1)
-                        }),
+                        Transparency = NumberSequence.new(0),
                         Rotation = 0
                     })
 
