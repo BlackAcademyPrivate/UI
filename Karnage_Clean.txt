@@ -3334,35 +3334,25 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     local tween = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
                     
                     if currentState then
-                local tween1 = TweenService:Create(thisTrack, tween, {
-                    BackgroundColor3 = Color3.fromRGB(87, 86, 86)
-                })
-                local tween2 = TweenService:Create(thisKnob, tween, {
-                    Position = UDim2.new(0, 20, 0.5, -7), BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-
-                    })
-
-                    if thisStroke then
-                        local tween3 = TweenService:Create(thisStroke, tween, {
-                            Thickness = 0
+                        local tween1 = TweenService:Create(thisTrack, tween, {
+                            BackgroundColor3 = Color3.fromRGB(87, 86, 86)
                         })
-                        _trackTween(tween3)
-                        tween3:Play()
-                    end
-
-                    _trackTween(tween1)
-                    _trackTween(tween2)
-                    tween1:Play()
-                    tween2:Play()
-                            
-                            _trackTween(tween1)
-                            _trackTween(tween2)
-                            tween1:Play()
-                            tween2:Play()
+                        local tween2 = TweenService:Create(thisKnob, tween, {
+                            Position = UDim2.new(0, 20, 0.5, -7), BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                        })
+                        
+                        if thisStroke then
+                            local tween3 = TweenService:Create(thisStroke, tween, {
+                                Thickness = 0
+                            })
+                            _trackTween(tween3)
+                            tween3:Play()
                         end
                         
-                        end
-                        end
+                        _trackTween(tween1)
+                        _trackTween(tween2)
+                        tween1:Play()
+                        tween2:Play()
                     else
                         local tween1 = TweenService:Create(thisTrack, tween, {
                             BackgroundColor3 = Color3.fromRGB(61, 61, 61)
@@ -3651,36 +3641,25 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                     local tween = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
                     
                     if currentState then
-                local tween1 = TweenService:Create(thisBox, tween, {
-                    BackgroundColor3 = Color3.fromRGB(87, 86, 86)
-                })
-                local tween2 = TweenService:Create(thisIcon, tween, {
-                    ImageTransparency = 0, ImageColor3 = Color3.fromRGB(255, 255, 255)
-
-                    })
-
-                    if thisStroke then
-                        local tween3 = TweenService:Create(thisStroke, tween, {
-                            Thickness = 0
+                        local tween1 = TweenService:Create(thisBox, tween, {
+                            BackgroundColor3 = Color3.fromRGB(87, 86, 86)
                         })
-                        _trackTween(tween3)
-                        tween3:Play()
-                    end
-
-                    _trackTween(tween1)
-                    _trackTween(tween2)
-                    tween1:Play()
-                    tween2:Play()
-                            
-                            _trackTween(tween1)
-                            _trackTween(tween2)
-                            tween1:Play()
-                            tween2:Play()
+                        local tween2 = TweenService:Create(thisIcon, tween, {
+                            ImageTransparency = 0, ImageColor3 = Color3.fromRGB(255, 255, 255)
+                        })
+                        
+                        if thisStroke then
+                            local tween3 = TweenService:Create(thisStroke, tween, {
+                                Thickness = 0
+                            })
+                            _trackTween(tween3)
+                            tween3:Play()
                         end
                         
-                        end
-                        
-                        end
+                        _trackTween(tween1)
+                        _trackTween(tween2)
+                        tween1:Play()
+                        tween2:Play()
                     else
                         local tween1 = TweenService:Create(thisBox, tween, {
                             BackgroundColor3 = Color3.fromRGB(61, 61, 61)
