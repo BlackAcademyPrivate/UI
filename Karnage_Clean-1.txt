@@ -1462,8 +1462,8 @@ function Karnage:Notify(config)
     local titleText = config.Title or "Notification"
     local contentText = config.Content or "Content"
     
-    local notificationWidth = 220
-    local notificationHeight = 70
+    local notificationWidth = 200
+    local notificationHeight = 62
     
     local Notification = Karnage.Instance("Frame", {
         Parent = NotificationHolder,
@@ -1477,7 +1477,7 @@ function Karnage:Notify(config)
     })
     
     local targetPosition = UDim2.new(1, -notificationWidth - 15, 1, -notificationHeight - 10)
-    local entryTweenInfo = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0)
+    local entryTweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, 0, false, 0)
     local entryTween = TweenService:Create(Notification, entryTweenInfo, {
         Position = targetPosition
     })
@@ -1522,8 +1522,8 @@ function Karnage:Notify(config)
     Karnage.Instance("TextLabel", {
         Parent = Notification,
         BackgroundTransparency = 1,
-        Size = UDim2.new(1, -10, 0, 40),
-        Position = UDim2.new(0, 5, 0, 30),
+        Size = UDim2.new(1, -10, 0, 26),
+        Position = UDim2.new(0, 5, 0, 28),
         Font = Enum.Font[Karnage.CustomFont],
         Text = contentText,
         TextColor3 = Color3.fromRGB(160, 160, 170),
@@ -1576,7 +1576,7 @@ function Karnage:Notify(config)
     
     local function closeNotification()
         if not _isDestroyed then
-            local exitTweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In, 0, false, 0)
+            local exitTweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.In, 0, false, 0)
             local exitTween = TweenService:Create(Notification, exitTweenInfo, {
                 Position = UDim2.new(1, notificationWidth + 20, Notification.Position.Y.Scale, Notification.Position.Y.Offset)
             })
@@ -1837,35 +1837,31 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
         })
         
         local isDragging = false
-        local dragStart = nil
-        local startPos = nil
+        local dragOffset = Vector2.new(0, 0)
         local hasMoved = false
-        
-        local connection1 = _trackConnection(ToggleButton.InputBegan:Connect(function(input)
+
+        _trackConnection(ToggleButton.InputBegan:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                 isDragging = true
-                dragStart = input.Position
-                startPos = ToggleButton.Position
                 hasMoved = false
+                local pos = ToggleButton.Position
+                dragOffset = Vector2.new(input.Position.X - pos.X.Offset, input.Position.Y - pos.Y.Offset)
             end
         end))
-        
-        local updateConnection
-        updateConnection = _trackConnection(RunService.Heartbeat:Connect(function()
-            if isDragging then
-                local mouse = Players.LocalPlayer:GetMouse()
-                local currentInput = Vector2.new(mouse.X, mouse.Y)
-                local delta = currentInput - Vector2.new(dragStart.X, dragStart.Y)
-                if math.abs(delta.X) > 2 or math.abs(delta.Y) > 2 then
+
+        _trackConnection(UserInputService.InputChanged:Connect(function(input)
+            if isDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+                local delta = Vector2.new(input.Position.X - dragOffset.X, input.Position.Y - dragOffset.Y)
+                if not hasMoved and (math.abs(input.Position.X - (ToggleButton.Position.X.Offset + dragOffset.X)) > 2 or math.abs(input.Position.Y - (ToggleButton.Position.Y.Offset + dragOffset.Y)) > 2) then
                     hasMoved = true
-                    local newX = math.clamp(startPos.X.Offset + delta.X, 0, Karnage.ToggleUI.AbsoluteSize.X - 50)
-                    local newY = math.clamp(startPos.Y.Offset + delta.Y, 0, Karnage.ToggleUI.AbsoluteSize.Y - 50)
-                    ToggleButton.Position = UDim2.new(0, newX, 0, newY)
                 end
+                local newX = math.clamp(delta.X, 0, Karnage.ToggleUI.AbsoluteSize.X - 50)
+                local newY = math.clamp(delta.Y, 0, Karnage.ToggleUI.AbsoluteSize.Y - 50)
+                ToggleButton.Position = UDim2.new(0, newX, 0, newY)
             end
         end))
-        
-        local connection3 = _trackConnection(ToggleButton.InputEnded:Connect(function(input)
+
+        _trackConnection(UserInputService.InputEnded:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                 if isDragging then
                     isDragging = false
@@ -1883,14 +1879,6 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                         task.wait(0.001)
                         tween2:Play()
                     end
-                end
-            end
-        end))
-        
-        local connection4 = _trackConnection(InputService.InputEnded:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-                if isDragging then
-                    isDragging = false
                 end
             end
         end))
@@ -4344,8 +4332,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 Parent = Slider,
                 BackgroundColor3 = Color3.fromRGB(60, 60, 60),
                 BackgroundTransparency = 0.7,
-                Size = UDim2.new(0, 150, 0, 4),
-                Position = UDim2.new(1, -220, 0, 19),
+                Size = UDim2.new(0, 130, 0, 4),
+                Position = UDim2.new(1, -205, 0, 19),
                 ZIndex = 2,
                 BorderSizePixel = 0,
                 BorderColor3 = Color3.fromRGB(39, 39, 42),
