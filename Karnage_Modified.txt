@@ -1895,24 +1895,12 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
     local originalSize = loadedSize
     local originalPosition = UDim2.new(0.5, 0, 0.5, 0)
     
-    local Shadow = Karnage.Instance("ImageLabel", {
-        Parent = KarnageUI,
-        Image = "",
-        AnchorPoint = Vector2.new(0.5, 0.5),
-        Size = UDim2.new(0, 0, 0, 0),
-        Position = UDim2.new(0.5, 0, 0.5, 0),
-        BackgroundTransparency = 1,
-        ImageTransparency = 1,
-        Visible = false,
-        ZIndex = 0
-    })
-
     
     local Main = Karnage.Instance("Frame", {
         Parent = KarnageUI,
         BackgroundColor3 = Karnage.MainFrameColor,
         BorderColor3 = Color3.fromRGB(39, 39, 42),
-        BackgroundTransparency = 0.08,
+        BackgroundTransparency = 0,
         BorderSizePixel = 0,
         Size = UDim2.new(0, 0, 0, 0),
         Position = UDim2.new(0.5, 0, 0.5, 0),
@@ -1950,7 +1938,6 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
     local isDraggingMain = false
     local dragStartMain = nil
     local startPosMain = nil
-    local startPosShadow = nil
     
     local openingTween = TweenInfo.new(0.6, Enum.EasingStyle.Quint)
     local mainSizeTween = TweenService:Create(Main, openingTween, {
@@ -1959,13 +1946,6 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
     _trackTween(mainSizeTween)
     mainSizeTween:Play()
     
-    _trackConnection(mainSizeTween.Completed:Connect(function()
-        local shadowTween = TweenService:Create(Shadow, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
-            ImageTransparency = 0.6
-        })
-        _trackTween(shadowTween)
-        shadowTween:Play()
-    end))
     
     local ResizeHandle = Karnage.Instance("ImageButton", {
         Parent = Main,
@@ -2016,7 +1996,6 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             newWidth, newHeight = Karnage.ValidateResizeSize(newWidth, newHeight)
             
             Main.Size = UDim2.new(0, newWidth, 0, newHeight)
-            Shadow.Size = UDim2.new(0, newWidth + 120, 0, newHeight + 116)
             
             if Karnage.BackgroundImage then
                 Karnage.BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
@@ -2033,7 +2012,6 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 isDraggingMain = true
                 dragStartMain = input.Position
                 startPosMain = Main.Position
-                startPosShadow = Shadow.Position
             end
         end))
         
@@ -2043,11 +2021,8 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 
                 local mainNewX = startPosMain.X.Offset + delta.X
                 local mainNewY = startPosMain.Y.Offset + delta.Y
-                local shadowNewX = startPosShadow.X.Offset + delta.X
-                local shadowNewY = startPosShadow.Y.Offset + delta.Y
                 
                 Main.Position = UDim2.new(startPosMain.X.Scale, mainNewX, startPosMain.Y.Scale, mainNewY)
-                Shadow.Position = UDim2.new(startPosShadow.X.Scale, shadowNewX, startPosShadow.Y.Scale, shadowNewY)
             end
         end))
         
