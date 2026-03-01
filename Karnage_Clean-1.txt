@@ -2625,6 +2625,11 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
                 oldTab.TitleFrame.Visible = false
                 oldTab.ContainerWrapper.Visible = false
                 
+                local oldTitleLabel = oldTab.TitleFrame:FindFirstChildWhichIsA("TextLabel")
+                if oldTitleLabel then
+                    oldTitleLabel.TextTransparency = 0
+                end
+
                 oldTab.Text.TextTransparency = 0
                 oldTab.Text.TextColor3 = Color3.fromRGB(130, 130, 140)
 
@@ -2663,9 +2668,30 @@ Karnage.Create = LPH_NO_VIRTUALIZE(function(config)
             
             TabContent.Visible = true
             TitleFrame.Visible = true
-            ContainerWrapper.Position = UDim2.new(0, 12, 0, 55)
+            ContainerWrapper.Position = UDim2.new(0, 28, 0, 55)
+            ContainerWrapper.BackgroundTransparency = 1
             ContainerWrapper.Visible = true
-            
+
+            local slideInfo = TweenInfo.new(0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+            local slideTween = TweenService:Create(ContainerWrapper, slideInfo, {
+                Position = UDim2.new(0, 12, 0, 55)
+            })
+            _trackTween(slideTween)
+            slideTween:Play()
+
+            local containerFade = TweenService:Create(Container, slideInfo, {
+                BackgroundTransparency = 1
+            })
+            _trackTween(containerFade)
+            containerFade:Play()
+
+            TitleLabel.TextTransparency = 1
+            local titleFade = TweenService:Create(TitleLabel, TweenInfo.new(0.18, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                TextTransparency = 0
+            })
+            _trackTween(titleFade)
+            titleFade:Play()
+
             TabText.TextTransparency = 1
             TabText.TextColor3 = Color3.fromRGB(210, 210, 210)
             local textFadeIn = TweenService:Create(TabText, tweenInfoExpand, {
